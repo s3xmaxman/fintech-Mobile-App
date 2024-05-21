@@ -1,5 +1,6 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
+import { useSignUp } from '@clerk/clerk-expo';
 //import { useSignUp } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -18,9 +19,19 @@ const Page= () => {
   const [countryCode, setCountryCode] = useState('+81');
   const [phoneNumber, setPhoneNumber] = useState('');
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 0;
+  const router = useRouter();
+  const { signUp } = useSignUp();
 
   const onSignUp = async () => {
-  
+    const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+    try {
+      await signUp!.create({ 
+        phoneNumber: fullPhoneNumber
+      });
+      router.push({ pathname: '/verify/[phone]', params: { phone: fullPhoneNumber } });
+    } catch (error) {
+      console.error('Error signing up', error);
+    }
   }
   
   return (
