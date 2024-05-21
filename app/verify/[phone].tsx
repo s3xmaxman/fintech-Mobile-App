@@ -18,7 +18,7 @@ const page = () => {
   const [code, setCode] = useState('');
   const { signIn } = useSignIn();
   const { signUp, setActive } = useSignUp();
-  
+
   const ref = useBlurOnFulfill({ value:code, cellCount: CELL_COUNT });
 
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -37,11 +37,29 @@ const page = () => {
   }, [code])
 
   const verifyCode = async () => {
-      
+      try {
+        await signUp!.attemptPhoneNumberVerification({ code });
+
+        await setActive!({ session: signUp!.createdSessionId });
+      } catch (error) {
+        console.error('Error', JSON.stringify(error, null, 2));
+        if(isClerkAPIResponseError(error)) {
+            Alert.alert('Error', error.errors[0].message);
+        }
+      }
   }
 
   const verifySignIn = async () => {
+    try {
+      await signIn!.attemptFirstFactor({ strategy: 'phone_code', code });
       
+      await setActive!({ session: signIn!.createdSessionId });
+    } catch (error) {
+        console.error('Error', JSON.stringify(error, null, 2));
+        if(isClerkAPIResponseError(error)) {
+            Alert.alert('Error', error.errors[0].message);
+        }
+    }
   }
 
   return (
