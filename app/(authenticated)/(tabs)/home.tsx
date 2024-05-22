@@ -7,6 +7,7 @@ import Dropdown from '@/components/Dropdown';
 import { useBalanceStore } from '@/store/balanceStore';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
+import WidgetList from '@/components/SortableList/WidgetList';
 
 const Page = () => {
   const { balance, transactions, runTransaction, clearTransactions } = useBalanceStore();
@@ -44,30 +45,34 @@ const Page = () => {
           </Text>
         )}
 
-        {transactions.reverse().map((transaction) => (
-            <View
-              key={transaction.id}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}
-            >
-                <View style={styles.circle}>
-                   <Ionicons
-                     name={transaction.amount > 0 ? 'add' : 'remove'}
-                     size={24}
-                     color={Colors.dark}
-                   />
-                </View>
-     
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontWeight: '400' }}>{transaction.title}</Text>
-                  <Text style={{ color: Colors.gray, fontSize: 12 }}>
-                     {transaction.date.toLocaleString()}
-                  </Text>
-                </View>
-              <Text>{transaction.amount}€</Text>
+      {transactions.map((_, index) => {
+        const transaction = transactions[transactions.length - 1 - index];
+        return (
+          <View
+            key={transaction.id}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}
+          >
+            <View style={styles.circle}>
+              <Ionicons
+                name={transaction.amount > 0 ? 'add' : 'remove'}
+                size={24}
+                color={Colors.dark}
+              />
+            </View>
+
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontWeight: '400' }}>{transaction.title}</Text>
+              <Text style={{ color: Colors.gray, fontSize: 12 }}>
+                {transaction.date.toLocaleString()}
+              </Text>
+            </View>
+            <Text>{transaction.amount}€</Text>
           </View>
-        ))}
+        );
+      })}
       </View>
       <Text style={defaultStyles.sectionHeader}>Widgets</Text>
+      <WidgetList />
     </ScrollView>
   )
 }
