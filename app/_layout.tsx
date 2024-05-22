@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { Link, Stack, useRouter, useSegments } from 'expo-router';
 import Colors from '@/constants/Colors';
-import { TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
@@ -46,6 +46,7 @@ SplashScreen.preventAutoHideAsync();
 const InitialLayout = () => {
   const router = useRouter();
   const { isLoaded, isSignedIn } = useAuth();
+  const segments = useSegments();
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
@@ -63,11 +64,17 @@ const InitialLayout = () => {
   }, [loaded]);
 
   useEffect(() => {
-    console.log('isSignedIn', isSignedIn);
+    const inAuthGroup = segments[0] === '(authenticated)';
+
+    if (isSignedIn && !inAuthGroup) {
+      router.replace('/(authenticated)/(tabs)/home');
+    } else if (!isSignedIn && inAuthGroup) {
+      router.replace('/');
+    }
   }, [isSignedIn]);
 
-  if (!loaded) {
-    return null;
+  if (!loaded || !isLoaded) {
+    return <Text>Loading...</Text>;
   }
 
   return (
@@ -123,6 +130,8 @@ const InitialLayout = () => {
           ),
         }}
       />
+
+      <Stack.Screen name="(authenticated)/(tabs)" options={{ headerShown: false }} />
   </Stack>
   );
 }
