@@ -40,7 +40,7 @@ const Layout = () => {
             <FontAwesome name='registered' color={color} size={size}/>  
           ),
           header: () => <CustomHeader />,
-          // headerTransparent: true,
+          headerTransparent: true,
         }} 
       />
 
