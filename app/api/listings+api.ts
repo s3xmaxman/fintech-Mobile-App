@@ -158,7 +158,7 @@ const data = [
   },
   {
     id: 825,
-    name: 'Tether USDt',
+    name: 'Tether',
     symbol: 'USDT',
     slug: 'tether',
     num_market_pairs: 76927,

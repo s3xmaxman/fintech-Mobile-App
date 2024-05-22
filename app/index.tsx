@@ -3,11 +3,13 @@ import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
 import { useAssets } from 'expo-asset';
 import { ResizeMode, Video } from 'expo-av';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+
 const index = () => {
-    const [assets] = useAssets([require('../assets/videos/intro.mp4')]);
+  const [assets] = useAssets([require('../assets/videos/intro.mp4')]);
+  
     
 
   if (!assets) {

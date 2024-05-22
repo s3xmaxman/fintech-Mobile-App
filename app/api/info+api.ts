@@ -48,11 +48,11 @@ const data = {
   },
   '825': {
     id: 825,
-    name: 'Tether USDt',
+    name: 'Tether',
     symbol: 'USDT',
     category: 'token',
     description:
-      'Tether USDt (USDT) is a cryptocurrency and operates on the Ethereum platform. Tether USDt has a current supply of 103,800,078,701.87814 with 100,044,694,548.97124 in circulation. The last known price of Tether USDt is 1.00048841 USD and is down -0.01 over the last 24 hours. It is currently trading on 76924 active market(s) with $138,946,065,853.46 traded over the last 24 hours. More information can be found at https://tether.to.',
+      'Tether USDT (USDT) is a cryptocurrency and operates on the Ethereum platform. Tether USDT has a current supply of 103,800,078,701.87814 with 100,044,694,548.97124 in circulation. The last known price of Tether USDt is 1.00048841 USD and is down -0.01 over the last 24 hours. It is currently trading on 76924 active market(s) with $138,946,065,853.46 traded over the last 24 hours. More information can be found at https://tether.to.',
     slug: 'tether',
     logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png',
     subreddit: '',
