@@ -24,7 +24,7 @@ const Page = () => {
     <ScrollView style={{ backgroundColor: Colors.background }}>
       <View style={styles.account}>
         <View style={styles.row}>
-          <Text style={styles.balance}>{Math.floor(balance())}</Text>
+          <Text style={styles.balance}>{balance()}</Text>
           <Text style={styles.currency}>€</Text>
         </View>
       </View>
@@ -44,7 +44,7 @@ const Page = () => {
           </Text>
         )}
 
-        {transactions.map((transaction) => (
+        {transactions.reverse().map((transaction) => (
             <View
               key={transaction.id}
               style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}
