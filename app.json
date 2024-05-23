@@ -31,10 +31,9 @@
       [
         "expo-router",
         {
-          "origin": "https://www.yaokin.com/"
+          "origin": "https://galaxies.dev"
         }
       ],
-      "expo-asset",
       "expo-secure-store",
       [
         "expo-local-authentication",
@@ -42,7 +41,23 @@
           "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
         }
       ],
-      "expo-dynamic-app-icon"
+      [
+        "expo-dynamic-app-icon",
+        {
+          "default": {
+            "image": "./assets/images/icon.png",
+            "prerendered": true
+          },
+          "dark": {
+            "image": "./assets/images/icon-dark.png",
+            "prerendered": true
+          },
+          "vivid": {
+            "image": "./assets/images/icon-vivid.png",
+            "prerendered": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
