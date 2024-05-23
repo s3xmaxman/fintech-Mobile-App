@@ -12,6 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { UserInactivityProvider } from '@/context/UserInactivity';
 
 const queryClient = new QueryClient();
 
@@ -156,6 +157,10 @@ const InitialLayout = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name="(authenticated)/(modals)/lock"
+        options={{ headerShown: false, animation: 'none' }}
+      />
   </Stack>
   );
 }
@@ -166,10 +171,12 @@ const RootLayoutNav = () => {
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
+      <UserInactivityProvider>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <StatusBar style="light" />
           <InitialLayout />
         </GestureHandlerRootView>
+         </UserInactivityProvider>
       </QueryClientProvider>
     </ClerkProvider>
   );
