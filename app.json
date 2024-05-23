@@ -31,9 +31,10 @@
       [
         "expo-router",
         {
-          "origin": "https://galaxies.dev"
+          "origin": "https://www.yaokin.com/"
         }
       ],
+      "expo-asset",
       "expo-secure-store",
       [
         "expo-local-authentication",
@@ -42,21 +43,21 @@
         }
       ],
       [
-        "expo-dynamic-app-icon",
-        {
-          "default": {
-            "image": "./assets/images/icon.png",
-            "prerendered": true
-          },
-          "dark": {
-            "image": "./assets/images/icon-dark.png",
-            "prerendered": true
-          },
-          "vivid": {
-            "image": "./assets/images/icon-vivid.png",
-            "prerendered": true
-          }
+      "expo-dynamic-app-icon",
+      {
+        "default": {
+          "image": "./assets/images/icon.png",
+          "prerendered": true
+        },
+        "dark": {
+          "image": "./assets/images/icon-dark.png",
+          "prerendered": true
+        },
+        "vivid": {
+          "image": "./assets/images/icon-vivid.png",
+          "prerendered": true
         }
+      }
       ]
     ],
     "experiments": {
