@@ -23,7 +23,12 @@ import Animated, { SharedValue, useAnimatedProps } from 'react-native-reanimated
 import CryptoHeader from './components/cryptoHeader';
 import CategoryList from './components/categoryList';
 import CryptoOverview from './components/cryptoOverview';
+import { LogBox } from 'react-native';
 
+// コンポーネントの描画前に実行
+LogBox.ignoreLogs([
+  'Warning: CartesianChart: Support for defaultProps will be removed from function components in a future major release.',
+]);
 
 Animated.addWhitelistedNativeProps({ text: true });
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
